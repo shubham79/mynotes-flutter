@@ -1,4 +1,3 @@
-import 'dart:developer' as devtools show log;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +17,7 @@ void main() {
     routes: {
       '/login/': (context) => const LoginView(),
       '/register/': (context) => const RegisterView(),
+      '/notes/': ((context) => const NotesView())
     },
   ));
 }
@@ -74,7 +74,6 @@ class _NotesViewState extends State<NotesView> {
             switch (value) {
               case MenuAction.logout:
                 final shouldLogout = await showLogOutDialog(context);
-                devtools.log(shouldLogout.toString());
                 if (shouldLogout) {
                   // Log out from Firebase
                   await FirebaseAuth.instance.signOut();
